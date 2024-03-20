@@ -3,6 +3,10 @@ import { Box, TextField, Stack, Button, SxProps } from '@mui/material'
 import useValidateInput from '../hooks/useValidateInput'
 import { validateStringNotEmpty as isEmpty } from '../utils/utils'
 import GradientCircularProgress from './GradientCircularProgress'
+import CommentTermText from './CommentTermText'
+import { inputNameState } from '../state/inputNameState'
+import { inputTextState } from '../state/inputTextState'
+import { FormEventHandler } from 'react'
 
 const textFieldSx: SxProps<Theme> = {
   width: '100%',
@@ -12,11 +16,11 @@ export default function CommentFormUi({
   onSubmit,
   isSending,
 }: {
-  onSubmit: React.FormEventHandler<HTMLFormElement>
+  onSubmit: FormEventHandler<HTMLFormElement>
   isSending: boolean
 }) {
-  const nameProps = useValidateInput(20)
-  const textProps = useValidateInput(1000)
+  const nameProps = useValidateInput(20, inputNameState)
+  const textProps = useValidateInput(1000, inputTextState)
 
   return (
     <Box
@@ -38,14 +42,22 @@ export default function CommentFormUi({
         name="text"
         {...textProps}
       />
-      <Stack direction="row" spacing={2} justifyContent="flex-end" height={'40px'}>
-        {isSending ? (
-          <GradientCircularProgress />
-        ) : (
-          <Button type="submit" variant="contained" disabled={!isEmpty(textProps.value)}>
-            投稿する
-          </Button>
-        )}
+      <Stack direction="row" spacing={2} justifyContent="flex-end" minHeight={'40px'}>
+        <CommentTermText />
+        <Box minWidth="100px" display="flex">
+          {isSending ? (
+            <GradientCircularProgress />
+          ) : (
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={!isEmpty(textProps.value)}
+              sx={{ m: 'auto', ml: 'auto', height: 'fit-content' }}
+            >
+              投稿する
+            </Button>
+          )}
+        </Box>
       </Stack>
     </Box>
   )

@@ -7,7 +7,7 @@ export default function ReadMoreCommentButton({ onClick }: { onClick: React.Mous
       label="もっと見る"
       onClick={onClick}
       variant="outlined"
-      sx={{ maxWidth: 'fit-content', m: 'auto' }}
+      sx={{ minHeight: '48px', borderRadius: '99rem' }}
       icon={<KeyboardArrowDownIcon />}
     />
   )

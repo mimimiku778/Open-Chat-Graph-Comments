@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material'
 
-export default function GradientCircularProgress() {
+export default function GradientCircularProgress({ margin = 'auto' }: { margin?: string }) {
   return (
     <>
       <svg width={0} height={0}>
@@ -11,7 +11,7 @@ export default function GradientCircularProgress() {
           </linearGradient>
         </defs>
       </svg>
-      <CircularProgress sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }} />
+      <CircularProgress sx={{ 'svg circle': { stroke: 'url(#my_gradient)' }, m: margin }} />
     </>
   )
 }

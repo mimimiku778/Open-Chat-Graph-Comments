@@ -15,10 +15,10 @@ type LikeBtnApi = {
   voted: LikeBtnType | ''
 }
 
-type CommentListApi = {
+type CommentItem = {
   comment: CommentItemApi
   like: LikeBtnApi
-}[]
+}
 
 interface ErrorResponse {
   error: {

@@ -1,5 +1,6 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { LikeBtnHandler, LikeBtnState } from './LikeButton'
+import { memo } from 'react'
 
 type BtnTypoProps = {
   text: string | number
@@ -44,7 +45,7 @@ function Btn(props: BtnProps) {
 
 type BtnWrapper = { emoji: string; title: string; count: number; type: LikeBtnType }
 
-export default function LikeButtonUi(props: LikeBtnState & { handler: LikeBtnHandler }) {
+export default memo(function LikeButtonUi(props: LikeBtnState & { handler: LikeBtnHandler }) {
   const { empathyCount, insightsCount, negativeCount, voted, handler } = props
 
   const BtnWrapper = (props: BtnWrapper) => (
@@ -52,10 +53,10 @@ export default function LikeButtonUi(props: LikeBtnState & { handler: LikeBtnHan
   )
 
   return (
-    <Stack spacing={1} direction="row" sx={{ ml: 'auto' }}>
+    <Stack spacing={1} direction="row" sx={{ ml: 'auto', mt: 0.5 }}>
       <BtnWrapper emoji="🙂" title="共感した" count={empathyCount} type={'empathy'} />
       <BtnWrapper emoji="😯" title="なるほど" count={insightsCount} type={'insights'} />
       <BtnWrapper emoji="🤔" title="うーん" count={negativeCount} type={'negative'} />
     </Stack>
   )
-}
+})

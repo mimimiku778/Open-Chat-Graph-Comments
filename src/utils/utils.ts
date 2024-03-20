@@ -13,6 +13,22 @@ export function formatDatetimeWithWeekdayFromMySql(datetime: string): string {
   })}`
 }
 
+const ymdhis = new Intl.DateTimeFormat(
+  undefined,
+  {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }
+)
+
+export function getDatetimeString(date: Date = new Date()) {
+  return ymdhis.format(date)
+}
+
 export async function fetchApi<T>(url: string, method: string = 'GET', bodyData: unknown) {
   const body = bodyData ? JSON.stringify(bodyData) : undefined
 
