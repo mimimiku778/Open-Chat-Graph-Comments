@@ -29,9 +29,10 @@ export default function CommentList({ limit }: { limit: number }) {
 
   return (
     <>
+      {<ReportDialog />}
       {data && (
         <List sx={{ ...containerSx, gap: '1.5rem' }}>
-          {!postedItem.length && data[0].length === 0 ? <EmptyListItem /> : <ReportDialog />}
+          {!postedItem.length && data[0].length === 0 && <EmptyListItem />}
           {<PostedItem postedItem={postedItem} lastId={data[0][0]?.comment.id} />}
           {data.flat().map((el) => (
             <CommentItemUi {...{ ...el.comment, ...el.like }} key={el.comment.id} />

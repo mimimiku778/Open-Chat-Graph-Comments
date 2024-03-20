@@ -8,6 +8,7 @@ import { useSetRecoilState } from 'recoil'
 import { inputTextState } from '../state/inputTextState'
 import { inputNameState } from '../state/inputNameState'
 import { appInitTagDto } from '../config/appInitTagDto'
+import { reportDialogState } from '../state/reportDialogState'
 
 export default function CommentForm() {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -16,6 +17,7 @@ export default function CommentForm() {
   const setText = useSetRecoilState(inputTextState)
   const formRef = useRef<FormData | undefined>()
   const setPostedItem = useSetPostedItem()
+  const setFailDialog = useSetRecoilState(reportDialogState)
   const { executeRecaptcha } = useGoogleReCaptcha()
 
   const onSubmit: FormEventHandler<HTMLFormElement> = useCallback((e) => {
@@ -51,12 +53,14 @@ export default function CommentForm() {
         setPostedItem(commentId, name, text)
         setName('')
         setText('')
+      } catch {
+        setFailDialog((p) => ({ ...p, open: true, result: 'fail' }))
       } finally {
         formRef.current = undefined
         setIsSending(false)
       }
     })()
-  }, [executeRecaptcha, setName, setPostedItem, setText])
+  }, [executeRecaptcha, setFailDialog, setName, setPostedItem, setText])
 
   const hadleDialogClose = useCallback(() => {
     setDialogOpen(false)
