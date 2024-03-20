@@ -1,4 +1,4 @@
-import { Box, CssBaseline } from '@mui/material'
+import { Box, Card, Typography } from '@mui/material'
 import CommentList from './components/CommentList'
 import CommentForm from './components/CommentForm'
 import RecaptchaText from './components/RecaptchaText'
@@ -11,11 +11,12 @@ const RECAPTCHA_SITE_KEY = '6LdqH54pAAAAAFqNSQgDdPWiCb7XucrP52gHfEsl'
 export default function App() {
   return (
     <RecoilRoot>
-      <style>{`.grecaptcha-badge { visibility: hidden; }`}</style>
       <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY} scriptProps={{ async: true }}>
-        <CssBaseline />
         <Box sx={containerSx}>
-          <CommentForm />
+          <Typography sx={{ fontSize: '1rem', fontWeight: 'bold' }}>コメント</Typography>
+          <Card variant="outlined" sx={{ p: 2, mb: 2 }}>
+            <CommentForm />
+          </Card>
           <CommentList limit={10} />
           <RecaptchaText />
         </Box>
