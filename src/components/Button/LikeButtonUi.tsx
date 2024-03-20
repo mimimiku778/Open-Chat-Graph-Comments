@@ -32,8 +32,8 @@ function Btn(props: BtnProps) {
 
   return (
     <Button color="error" onClick={() => handler(type)} disabled={disabled}>
-      <Stack spacing={0.5} direction="row" alignItems="center">
-        <BtnTypo text={emoji} size="1rem" />
+      <Stack spacing={0.8} direction="row" alignItems="center">
+        <BtnTypo text={emoji} size="13px" />
         <Stack direction="column" alignItems="flex-start">
           <BtnTypo text={title} size="11px" color={textColor} />
           <BtnTypo text={count} size="14px" color={textColor} />

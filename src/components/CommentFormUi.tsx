@@ -7,6 +7,7 @@ import CommentTermText from './CommentTermText'
 import { inputNameState } from '../state/inputNameState'
 import { inputTextState } from '../state/inputTextState'
 import { FormEventHandler } from 'react'
+import { appInitTagDto } from '../config/appInitTagDto'
 
 const textFieldSx: SxProps<Theme> = {
   width: '100%',
@@ -34,7 +35,9 @@ export default function CommentFormUi({
     >
       <TextField label="ニックネーム（任意）" variant="standard" sx={textFieldSx} name="name" {...nameProps} />
       <TextField
-        label="オープンチャットについてコメントする"
+        label={
+          appInitTagDto.openChatId ? 'オープンチャットについてコメントする' : 'オプチャグラフについてコメントする'
+        }
         variant="standard"
         multiline
         minRows={4}

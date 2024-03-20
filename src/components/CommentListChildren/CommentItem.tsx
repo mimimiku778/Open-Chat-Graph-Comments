@@ -12,7 +12,7 @@ const listItemSx: SxProps<Theme> = {
 }
 
 export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
-  const { id, commentId, name, time, text, empathyCount, insightsCount, negativeCount, voted } = props
+  const { id, commentId, name, time, text, userId, empathyCount, insightsCount, negativeCount, voted } = props
 
   return (
     <ListItem sx={listItemSx}>
@@ -26,7 +26,9 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
             color="text.secondary"
             sx={{ mb: '4px', fontSize: '12px' }}
           >
-            {`${id}. ${name ? name : '匿名'} ${formatDatetimeWithWeekdayFromMySql(time)}`}
+            {`${id}: `}
+            <b>{`${name ? name : '匿名'}`}</b>
+            {` ${formatDatetimeWithWeekdayFromMySql(time)} ID:${userId}`}
             <ReportButton id={id} commentId={commentId} />
           </Typography>
         }

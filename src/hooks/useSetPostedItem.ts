@@ -6,13 +6,14 @@ import { useCallback } from 'react'
 export default function useSetPostedItem() {
   const setPostedItem = useSetRecoilState(postedItemState)
 
-  return useCallback((commentId: number, name: string, text: string) => setPostedItem((p) => [{
+  return useCallback((commentId: number, name: string, text: string, userId: string) => setPostedItem((p) => [{
     comment: {
       id: 0,
       commentId,
       name,
       time: getDatetimeString(),
-      text
+      text,
+      userId
     },
     like: {
       empathyCount: 0,
