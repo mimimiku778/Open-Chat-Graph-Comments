@@ -19,17 +19,25 @@ function PostedItem({ postedItem, lastId }: { postedItem: CommentItem[]; lastId:
   })
 }
 
+const swrOptions = {
+  revalidateOnReconnect: false,
+  revalidateIfStale: false,
+  revalidateOnFocus: false,
+  revalidateFirstPage: false,
+}
+
 export default function CommentList({ limit }: { limit: number }) {
   const { data, setSize, size, isValidating } = useSWRInfinite<CommentItem[]>(
     (i: number) => `${appInitTagDto.baseUrl}/comment/${appInitTagDto.openChatId}?page=${i}&limit=${limit}`,
-    fetchApi<CommentItem[]>
+    fetchApi<CommentItem[]>,
+    swrOptions
   )
 
   const postedItem = useRecoilValue(postedItemState)
 
   return (
     <>
-      {<ReportDialog />}
+      <ReportDialog />
       {data && (
         <List sx={{ ...containerSx, gap: '1.5rem' }}>
           {!postedItem.length && data[0].length === 0 && <EmptyListItem />}

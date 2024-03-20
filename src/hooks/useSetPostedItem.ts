@@ -1,12 +1,12 @@
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { postedItemState } from '../state/postedItemState'
 import { getDatetimeString } from '../utils/utils'
 import { useCallback } from 'react'
 
 export default function useSetPostedItem() {
-  const [postedItem, setPostedItem] = useRecoilState(postedItemState)
+  const setPostedItem = useSetRecoilState(postedItemState)
 
-  return useCallback((commentId: number, name: string, text: string) => setPostedItem([{
+  return useCallback((commentId: number, name: string, text: string) => setPostedItem((p) => [{
     comment: {
       id: 0,
       commentId,
@@ -20,5 +20,5 @@ export default function useSetPostedItem() {
       negativeCount: 0,
       voted: ''
     }
-  }, ...postedItem]), [postedItem, setPostedItem])
+  }, ...p]), [setPostedItem])
 }

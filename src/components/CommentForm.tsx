@@ -36,7 +36,8 @@ export default function CommentForm() {
     setIsSending(true)
     const name = formRef.current.get('name') as string
     const text = formRef.current.get('text') as string
-
+    formRef.current = undefined
+    
     ;(async () => {
       try {
         const token = await executeRecaptcha('comment')
@@ -56,13 +57,13 @@ export default function CommentForm() {
       } catch {
         setFailDialog((p) => ({ ...p, open: true, result: 'fail' }))
       } finally {
-        formRef.current = undefined
         setIsSending(false)
       }
     })()
   }, [executeRecaptcha, setFailDialog, setName, setPostedItem, setText])
 
   const hadleDialogClose = useCallback(() => {
+    formRef.current = undefined
     setDialogOpen(false)
   }, [])
 
