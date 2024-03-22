@@ -7,7 +7,7 @@ export default function CommentFormTitle() {
         コメント
       </Typography>
       <Typography sx={{ fontSize: '12px' }} color="text.secondary" className="comment-term-text-color">
-        ログイン不要・匿名投稿
+        (ログイン不要・匿名投稿)
       </Typography>
     </Box>
   )
