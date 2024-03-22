@@ -28,7 +28,8 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
           >
             {`${id}: `}
             <b>{`${name ? name : '匿名'}`}</b>
-            {` ${formatDatetimeWithWeekdayFromMySql(time)} ID:${userId}`}
+            {` ${formatDatetimeWithWeekdayFromMySql(time)}`}
+            {userId ? ` ID:${userId}` : ''}
             <ReportButton id={id} commentId={commentId} />
           </Typography>
         }
