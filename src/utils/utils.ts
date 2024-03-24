@@ -13,6 +13,11 @@ export function formatDatetimeWithWeekdayFromMySql(datetime: string): string {
   })}`
 }
 
+export function convertTimeTagFormatFromMySql(datetime: string) {
+  // " "を"T"に置換し、末尾に"+09:00"を追加
+  return datetime.replace(" ", "T") + "+09:00";
+}
+
 const ymdhis = new Intl.DateTimeFormat(
   undefined,
   {

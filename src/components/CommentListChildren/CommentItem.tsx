@@ -2,7 +2,7 @@ import { Theme } from '@emotion/react'
 import { ListItem, ListItemText, SxProps, Typography } from '@mui/material'
 import LikeButton from '../Button/LikeButton'
 import { memo } from 'react'
-import { formatDatetimeWithWeekdayFromMySql } from '../../utils/utils'
+import { convertTimeTagFormatFromMySql, formatDatetimeWithWeekdayFromMySql } from '../../utils/utils'
 import ReportButton from '../Button/ReportButton'
 
 const listItemSx: SxProps<Theme> = {
@@ -28,7 +28,7 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
           >
             {`${id}: `}
             <b>{`${name ? name : '匿名'}`}</b>
-            {` ${formatDatetimeWithWeekdayFromMySql(time)}`}
+            <time dateTime={convertTimeTagFormatFromMySql(time)}>{` ${formatDatetimeWithWeekdayFromMySql(time)}`}</time>
             {userId ? ` ID:${userId}` : ''}
             <ReportButton id={id} commentId={commentId} />
           </Typography>
