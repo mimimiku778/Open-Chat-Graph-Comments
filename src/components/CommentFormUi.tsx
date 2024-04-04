@@ -36,7 +36,7 @@ export default function CommentFormUi({
       <TextField label="ニックネーム（任意）" variant="standard" sx={textFieldSx} name="name" {...nameProps} />
       <TextField
         label={
-          appInitTagDto.openChatId ? 'オープンチャットについてコメントする' : 'オプチャグラフについてコメントする'
+          appInitTagDto.openChatId ? 'オープンチャットについてのコメント' : 'コメント'
         }
         variant="standard"
         multiline

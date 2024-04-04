@@ -10,6 +10,7 @@ export default function ReportButtonUi({ onClick }: { onClick: React.MouseEventH
         minWidth: 0,
         ml: 1,
         fontSize: 'inherit',
+        lineHeight: "unset"
       }}
       onClick={onClick}
     >

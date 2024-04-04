@@ -18,7 +18,7 @@ export default function CommentFormDialogUi({
     >
       <DialogParagraph>
         <DialogSubTitle>誹謗中傷をしていませんか？</DialogSubTitle>
-        悪口や嫌がらせによって他人を著しく傷つける投稿はおやめください。
+        悪口や嫌がらせによって他人を著しく傷つける投稿は、名誉毀損や侮辱にあたる場合がありますのでおやめください。
       </DialogParagraph>
       <DialogParagraph>
         <DialogSubTitle>権利侵害をしていませんか？</DialogSubTitle>
@@ -28,7 +28,9 @@ export default function CommentFormDialogUi({
         <DialogSubTitle>違法な投稿ではありませんか？</DialogSubTitle>
         荒らし行為、度を超えた連続投稿、犯罪行為に関する投稿など、本サイトの運営を妨害する行為はおやめください。
       </DialogParagraph>
-      <DialogParagraph fontSize="11px">上記すべてをご確認いただいた上で投稿してください。</DialogParagraph>
+      <DialogParagraph fontSize="11px">
+        これらに該当したユーザーは、コメントの削除や投稿禁止などの制限を受ける他、法的責任を追及されることがあります。また、権利者から発信者情報開示請求があった場合、法令に則って開示することがあります。全てをご確認いただいた上で投稿してください。
+      </DialogParagraph>
     </ConfirmDialogUi>
   )
 }

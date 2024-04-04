@@ -10,14 +10,13 @@ type BtnTypoProps = {
 
 function BtnTypo({ text, size, color }: BtnTypoProps) {
   return (
-    <Typography display="block" component="span" fontSize={size} color={color}>
+    <Typography display="block" component="span" fontSize={size} color={color} lineHeight={'115%'}>
       {text}
     </Typography>
   )
 }
 
 type BtnProps = {
-  emoji: string
   title: string
   count: number
   voted: boolean
@@ -27,36 +26,39 @@ type BtnProps = {
 }
 
 function Btn(props: BtnProps) {
-  const { emoji, title, count, voted, handler, type, disabled } = props
+  const { title, count, voted, handler, type, disabled } = props
   const textColor = voted ? undefined : 'text.secondary'
 
   return (
-    <Button color="error" onClick={() => handler(type)} disabled={disabled}>
-      <Stack spacing={0.8} direction="row" alignItems="center">
-        <BtnTypo text={emoji} size="13px" />
-        <Stack direction="column" alignItems="flex-start">
-          <BtnTypo text={title} size="11px" color={textColor} />
-          <BtnTypo text={count} size="14px" color={textColor} />
+    <Button
+      color="error"
+      onClick={() => handler(type)}
+      disabled={disabled}
+      sx={{ border: '1px solid #efefef', minHeight: '28px' }}
+    >
+      <Stack gap="2px" direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" gap={'4px'}>
+          <BtnTypo text={title} size="10px" color={textColor} />
+          <BtnTypo text={count} size="12px" color={textColor} />
         </Stack>
       </Stack>
     </Button>
   )
 }
 
-type BtnWrapper = { emoji: string; title: string; count: number; type: LikeBtnType }
+type BtnWrapper = { title: string; count: number; type: LikeBtnType }
 
 export default memo(function LikeButtonUi(props: LikeBtnState & { handler: LikeBtnHandler }) {
-  const { empathyCount, insightsCount, negativeCount, voted, handler } = props
+  const { empathyCount, insightsCount: _insightsCount, negativeCount, voted, handler } = props
 
   const BtnWrapper = (props: BtnWrapper) => (
     <Btn {...{ ...props, handler }} voted={voted === props.type} disabled={!!voted && voted !== props.type} />
   )
 
   return (
-    <Stack spacing={1} direction="row" sx={{ ml: 'auto', mt: 0.5 }}>
-      <BtnWrapper emoji="🙂" title="共感した" count={empathyCount} type={'empathy'} />
-      <BtnWrapper emoji="😯" title="なるほど" count={insightsCount} type={'insights'} />
-      <BtnWrapper emoji="🤔" title="うーん" count={negativeCount} type={'negative'} />
+    <Stack gap="8px" direction="row">
+      <BtnWrapper title="いいね！" count={empathyCount} type={'empathy'} />
+      <BtnWrapper title="うーん…" count={negativeCount} type={'negative'} />
     </Stack>
   )
 })

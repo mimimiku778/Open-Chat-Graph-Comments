@@ -19,13 +19,7 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
       <ListItemText
         sx={{ m: 0 }}
         primary={
-          <Typography
-            display="block"
-            component="span"
-            variant="body2"
-            color="text.secondary"
-            sx={{ mb: '4px', fontSize: '12px' }}
-          >
+          <Typography display="block" component="span" variant="body2" color="text.secondary" sx={{ fontSize: '13px' }}>
             {`${id}: `}
             <b>{`${name ? name : '匿名'}`}</b>
             <time dateTime={convertTimeTagFormatFromMySql(time)}>{` ${formatDatetimeWithWeekdayFromMySql(time)}`}</time>
@@ -39,7 +33,8 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
             component="span"
             variant="body1"
             color="text.primary"
-            sx={{ wordBreak: 'break-all', whiteSpace: 'pre-line' }}
+            margin={'8px 0'}
+            sx={{ wordBreak: 'break-all', whiteSpace: 'pre-line', fontSize: '15px' }}
           >
             {text.replace(/(\r?\n|\r){3,}/g, '\n\n')}
           </Typography>

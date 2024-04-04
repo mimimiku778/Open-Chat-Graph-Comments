@@ -10,7 +10,7 @@ function LinkText({ url, text }: { url: string; text: string }) {
 
 export default function RecaptchaText() {
   return (
-    <Box display="flex" alignItems="center" justifyContent="center" gap="4px" mt="1rem">
+    <Box display="flex" alignItems="center" justifyContent="center" gap="4px">
       <Typography sx={{ fontSize: '11px' }} color="text.secondary" className="comment-term-text-color">
         このサイトはreCAPTCHAによって保護されており、Googleの
         <LinkText url="https://www.google.com/intl/ja/policies/privacy/" text="プライバシーポリシー" />
