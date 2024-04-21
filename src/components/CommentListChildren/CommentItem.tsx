@@ -21,10 +21,10 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
         primary={
           <Typography display="block" component="span" variant="body2" color="text.secondary" sx={{ fontSize: '13px' }}>
             {`${id}: `}
-            <b>{`${name ? name : '匿名'}`}</b>
+            <b>{text.length ? `${name ? name : '匿名'}` : '***'}</b>
             <time dateTime={convertTimeTagFormatFromMySql(time)}>{` ${formatDatetimeWithWeekdayFromMySql(time)}`}</time>
-            {userId ? ` ID:${userId}` : ''}
-            <ReportButton id={id} commentId={commentId} />
+            {text.length ? (userId ? ` ID:${userId}` : '') : ' 削除済'}
+            {!!text.length && <ReportButton id={id} commentId={commentId} />}
           </Typography>
         }
         secondary={
@@ -34,13 +34,18 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
             variant="body1"
             color="text.primary"
             margin={'8px 0'}
-            sx={{ wordBreak: 'break-all', whiteSpace: 'pre-line', fontSize: '15px' }}
+            sx={{
+              wordBreak: 'break-all',
+              whiteSpace: 'pre-line',
+              fontSize: '15px',
+              color: text.length ? undefined : '#aaa',
+            }}
           >
-            {text.replace(/(\r?\n|\r){3,}/g, '\n\n')}
+            {text.length ? text.replace(/(\r?\n|\r){3,}/g, '\n\n') : '削除されたコメント😇'}
           </Typography>
         }
       />
-      <LikeButton {...{ empathyCount, insightsCount, negativeCount, voted, commentId }} />
+      {!!text.length && <LikeButton {...{ empathyCount, insightsCount, negativeCount, voted, commentId }} />}
     </ListItem>
   )
 })
