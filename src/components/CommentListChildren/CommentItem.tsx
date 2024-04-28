@@ -23,7 +23,7 @@ export default memo(function CommentItem(props: CommentItemApi & LikeBtnApi) {
             {`${id}: `}
             <b>{text.length ? `${name ? name : '匿名'}` : '***'}</b>
             <time dateTime={convertTimeTagFormatFromMySql(time)}>{` ${formatDatetimeWithWeekdayFromMySql(time)}`}</time>
-            {text.length ? (userId ? ` ID:${userId}` : '') : ' 削除済'}
+            {text.length ? (userId ? ` ID:${userId}` : '') : userId ? ` ${userId}` : ' 削除済'}
             {!!text.length && <ReportButton id={id} commentId={commentId} />}
           </Typography>
         }
