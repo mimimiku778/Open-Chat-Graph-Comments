@@ -14,7 +14,7 @@ export default function App() {
     <RecoilRoot>
       <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY} scriptProps={{ async: true }}>
         <Box sx={containerSx}>
-          <CommentList limit={100} />
+          <CommentList limit={5} />
           <CommentFormTitle />
           <Card variant="outlined" sx={{ p: 2 }}>
             <CommentForm />
